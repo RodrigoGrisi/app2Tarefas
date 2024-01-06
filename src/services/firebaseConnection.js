@@ -3,7 +3,7 @@ import 'firebase/auth'
 import 'firebase/database';
 
 let firebaseConfig = {
-// COLOQUE SUAS CONFIGS DO FIREBASE AQUI 
+
 };
 
 if(!firebase.apps.length){

@@ -5,18 +5,17 @@ import {
 } from 'react-native';
 import firebase from '../../services/firebaseConnection';
 
-export default function Login() {
+export default function Login({ changeStatus }) {
   const [type, setType] = useState('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-
-   function handleLogin() {
+  function handleLogin() {
 
     if (type == 'login') {
-      const user =  firebase.auth().signInWithEmailAndPassword(email, password)
+      const user = firebase.auth().signInWithEmailAndPassword(email, password)
         .then((user) => {
-          console.log(user)
+          changeStatus(user.user.uid)
         }).catch((err) => {
           alert("Ops parece que deu algum erro")
           console.log(err)
@@ -25,7 +24,7 @@ export default function Login() {
     } else {
       const user = firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((user) => {
-          console.log(user)
+          changeStatus(user.user.uid)
         }).catch((err) => {
           alert("Ops parece que deu algum erro")
           console.log(err)
